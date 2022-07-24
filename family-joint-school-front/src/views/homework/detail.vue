@@ -56,6 +56,7 @@ export default {
         title: '',
         content: '',
         fileList: [],
+        pics: [],
       },
       homework: null,
       userHomework: null,
@@ -89,9 +90,10 @@ export default {
     },
     onSubmit() {
       Server({
-        url: '/cms/homework/publish',
+        url: '/api/homework/submit',
         method: 'post',
         data: {
+          homework_id: ~~this.$route.query?.id,
           title: this.form.title,
           content: this.form.content,
           pics: this.form.pics.filter(p => !!p.url),
@@ -101,6 +103,8 @@ export default {
         this.$alert({
           message: '提交成功',
         })
+
+        // this.$router.go(-1)
       })
     },
     onClose() {
