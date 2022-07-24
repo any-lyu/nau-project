@@ -198,7 +198,7 @@ func (l *logic) UserHomeWorkDetail(ctx context.Context, req *model.UserHomeWorkD
 		UserHomework: nil,
 	}
 	userHomework, err := l.db.UserHomeWork.Query().
-		Where(userhomework.ID(uint64(req.HomeworkID))).Where(userhomework.UserID(req.UserID)).First(ctx)
+		Where(userhomework.HomeworkID(uint64(req.HomeworkID))).Where(userhomework.UserID(req.UserID)).First(ctx)
 	if err != nil {
 		if ent.IsNotFound(err) {
 			return reply, nil
